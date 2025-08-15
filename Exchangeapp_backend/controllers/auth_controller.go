@@ -44,7 +44,7 @@ func Register(ctx *gin.Context) {//函数参数必须接收一个*gin.Context �
 	}
 
 	//前面无error，最终成功注册
-	ctx.JSON(http.StatusOK,signedToken)
+	ctx.JSON(http.StatusOK,gin.H{"token":signedToken})
 }
 
 func Login(ctx *gin.Context)  {
@@ -59,7 +59,7 @@ func Login(ctx *gin.Context)  {
 	}
 	//查询数据库是否有当前username的数据
 	var user models.User
-	if err := global.Db.Where("username=?",input.Username).Error;err !=nil {
+	if err := global.Db.Where("username=?",input.Username).First(&user).Error;err !=nil {
 		ctx.JSON(http.StatusUnauthorized,gin.H{"error":"can't find username"})
 		return
 	}
@@ -76,5 +76,5 @@ func Login(ctx *gin.Context)  {
 		return
 	}
 	//前面无error，最终成功注册
-	ctx.JSON(http.StatusOK,signedToken)
+	ctx.JSON(http.StatusOK,gin.H{"token":signedToken})
 }

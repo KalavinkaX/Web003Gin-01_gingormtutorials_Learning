@@ -19,7 +19,7 @@ func GenerateJWT(username string) (string,error) {
 		"exp" : time.Now().Add(time.Hour * 72).Unix(),//据1970年，现在时间后3days的时间戳
 	})
 	//最后加密前两部分
-	signedToken,err := token.SignedString("secret")
+	signedToken,err := token.SignedString([]byte("secret"))//这里最后加密JWT需要[]byte类型的
 	return "Bearer " + signedToken,err
 }
 //检查密码加密后是否和数据库hash一致，返回bool
