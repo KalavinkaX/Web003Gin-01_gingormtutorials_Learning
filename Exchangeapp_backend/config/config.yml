@@ -1,0 +1,6 @@
+app:
+  name: CurrencyExchangeApp
+  port: :3000
+
+database:
+  dsn : root:root@tcp(127.0.0.1:3306)/exchangeappgolang?charset=utf8mb4&parseTime=True&loc=Local
