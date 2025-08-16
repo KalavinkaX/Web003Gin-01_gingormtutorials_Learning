@@ -9,7 +9,7 @@ import (
 	"github.com/gin-gonic/gin"
 )
 
-func Register(ctx *gin.Context) {//函数参数必须接收一个*gin.Context 类型的参数
+func Register(ctx *gin.Context) {//!!!函数参数必须接收一个*gin.Context 类型的参数
 	var user models.User
 	if err := ctx.ShouldBind(&user); err != nil {
 		ctx.JSON(http.StatusBadRequest,gin.H{
@@ -49,7 +49,7 @@ func Register(ctx *gin.Context) {//函数参数必须接收一个*gin.Context �
 
 func Login(ctx *gin.Context)  {
 	var input struct{//新建专用登录操作，只包含username和password的结构体实体变量，不复用models的user结构体
-		Username string `json:"username"`//后面用于识别前端传来的小写username到结构体实体
+		Username string `json:"username"`//后面用于识别前端传来的小写username到结构体实体。类似Java的DTO
 		Password string `json:"password"`
 	}
 	//绑定只需要username和password的User结构体
