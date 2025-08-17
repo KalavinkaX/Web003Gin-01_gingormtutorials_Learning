@@ -3,6 +3,7 @@ package controllers
 import (
 	"exchangeapp/global"
 	"exchangeapp/models"
+	// "fmt"
 	"net/http"
 	"time"
 
@@ -31,6 +32,8 @@ func CreateExchangeRate(ctx *gin.Context) {
 		ctx.JSON(http.StatusInternalServerError,gin.H{"error":err.Error()})
 		return
 	}
+	//test:ctx.Get()自从中间件AuthMiddleWare里set后，可以在 同一条请求链上 的所有函数里取出
+	//fmt.Println(ctx.Get("username"))	//能打印 "Kalavinka" true
 
 	//返回
 	ctx.JSON(http.StatusOK,exchangeRate)
