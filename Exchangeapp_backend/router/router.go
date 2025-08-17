@@ -19,7 +19,7 @@ func StaupRouter() *gin.Engine {//返回Gin路由引擎指针，用于main等函
 
 		auth.POST("/register",controllers.Register)
 	}
-	
+
 	api := r.Group("/api")
 	//以下这个GET请求不会走中间件，直接能发起请求
 	api.GET("/exchangeRates",controllers.GetExchangeRates)
@@ -27,6 +27,9 @@ func StaupRouter() *gin.Engine {//返回Gin路由引擎指针，用于main等函
 	api.Use(middlewares.AuthMiddleWare())
 	{
 		api.POST("/exchangeRates",controllers.CreateExchangeRate)
+		api.POST("/articles",controllers.CreateArticle)
+		api.GET("/articles",controllers.GetArticles)
+		api.GET("/articles/:id",controllers.GetArticleById)//URL的Param参数是":id"的形式
 	}
 
 	test := r.Group("/test")
