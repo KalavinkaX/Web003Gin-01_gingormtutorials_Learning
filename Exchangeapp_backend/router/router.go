@@ -30,6 +30,9 @@ func StaupRouter() *gin.Engine {//返回Gin路由引擎指针，用于main等函
 		api.POST("/articles",controllers.CreateArticle)
 		api.GET("/articles",controllers.GetArticles)
 		api.GET("/articles/:id",controllers.GetArticleById)//URL的Param参数是":id"的形式
+	
+		api.POST("/articles/:id/like",controllers.LikeArticle)
+		api.GET("/articles/:id/like",controllers.GetArticleLikes)
 	}
 
 	test := r.Group("/test")
